@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del producto | Sabores de Barrio</title>
+
+    <style>
+        :root {
+            --fondo: #F3EEE5;
+            --tarjeta: #FFFCF7;
+            --verde: #294C3A;
+            --texto: #383D36;
+            --borde: #E7DED1;
+            --acento: #B9654D;
+            --acento-claro: #F5E7DE;
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            color: var(--texto);
+            background: var(--fondo);
+            line-height: 1.7;
+        }
+
+        header {
+            padding: 23px 6%;
+            background: linear-gradient(120deg, #243F30, #45664C);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        header h1 {
+            font: bold 30px Georgia, serif;
+            margin: 0;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            padding: 9px 16px;
+            border: 1px solid #FFFFFF55;
+            border-radius: 25px;
+            transition: background 0.25s, transform 0.25s;
+        }
+
+        header a:hover {
+            background: #FFFFFF20;
+            transform: translateY(-2px);
+        }
+
+        main {
+            width: min(1050px, 90%);
+            margin: 45px auto;
+        }
+
+        .producto {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 42px;
+            align-items: center;
+            padding: clamp(22px, 5vw, 48px);
+            border-radius: 25px;
+            border: 1px solid var(--borde);
+            border-top: 6px solid var(--acento);
+            background: var(--tarjeta);
+            box-shadow: 0 12px 35px #49392612;
+            animation: aparecer 0.65s ease both;
+        }
+
+        .imagen-contenedor {
+            background: var(--acento-claro);
+            padding: 18px;
+            border-radius: 22px;
+        }
+
+        .imagen-contenedor img {
+            width: 100%;
+            display: block;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.35s ease;
+        }
+
+        .imagen-contenedor img:hover {
+            transform: scale(1.025);
+        }
+
+        .etiqueta {
+            color: var(--acento);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 12px;
+        }
+
+        h2 {
+            font: bold clamp(30px, 4vw, 43px) Georgia, serif;
+            color: var(--verde);
+            line-height: 1.2;
+            margin: 12px 0;
+        }
+
+        .descripcion {
+            color: #64675F;
+            font-size: 17px;
+        }
+
+        .precio {
+            font: bold 30px Georgia, serif;
+            color: var(--acento);
+            margin: 22px 0;
+        }
+
+        .ficha {
+            padding: 20px 0;
+            margin-top: 22px;
+            border-top: 1px solid var(--borde);
+        }
+
+        .ficha h3 {
+            color: var(--verde);
+            margin-top: 0;
+        }
+
+        .ficha ul {
+            padding-left: 22px;
+        }
+
+        .boton {
+            display: inline-block;
+            background: var(--acento);
+            color: white;
+            text-decoration: none;
+            padding: 13px 22px;
+            border-radius: 30px;
+            transition: transform 0.25s, background 0.25s;
+        }
+
+        .boton:hover {
+            background: var(--verde);
+            transform: translateY(-3px);
+        }
+
+        footer {
+            text-align: center;
+            background: #294235;
+            color: white;
+            padding: 28px 15px;
+            margin-top: 55px;
+        }
+
+        footer p { margin: 0 auto; }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 720px) {
+            main { width: 92%; margin: 25px auto; }
+
+            .producto {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 20px;
+                border-radius: 19px;
+            }
+
+            .imagen-contenedor img {
+                aspect-ratio: 4 / 3;
+            }
+
+            header h1 { font-size: 25px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Sabores de Barrio</h1>
+        <a href="index.html">← Volver a la tienda</a>
+    </header>
+
+    <main>
+        <article class="producto">
+            <div class="imagen-contenedor">
+                <img id="imagen-producto"
+                     src="img/producto.jpg"
+                     alt="Fotografía del producto seleccionado">
+            </div>
+
+            <div>
+                <span class="etiqueta">Hecho artesanalmente</span>
+                <h2 id="nombre-producto">Nuestro producto</h2>
+                <p class="descripcion" id="descripcion"></p>
+                <p class="precio" id="precio"></p>
+
+                <div class="ficha">
+                    <h3>Características</h3>
+                    <ul id="caracteristicas"></ul>
+                </div>
+
+                <div class="ficha">
+                    <h3>Ingredientes principales</h3>
+                    <p id="ingredientes"></p>
+                </div>
+
+                <a class="boton" href="index.html#pedido">
+                    Hacer un pedido
+                </a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>Sabores de Barrio · Comida artesanal hecha con cariño.</p>
+    </footer>
+
+    <script>
+        // Información de cada producto.
+        // Los datos son ejemplos para este proyecto académico.
+        const productos = {
+            pan: {
+                nombre: "Pan de elote artesanal",
+                descripcion: "Un pan suave y casero con el sabor tradicional del elote, ideal para acompañar un café.",
+                precio: "$35.00",
+                imagen: "https://th.bing.com/th/id/OIP.MiSCNt6HL_Z8bjALfwM9LgHaE8?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
+                acento: "#647B51",
+                claro: "#E9EEDC",
+                ingredientes: "Elote, harina, huevo, leche y azúcar.",
+                caracteristicas: [
+                    "Textura suave",
+                    "Sabor tradicional",
+                    "Ideal para compartir"
+                ]
+            },
+
+            pina: {
+                nombre: "Empanadas de piña",
+                descripcion: "Empanadas doradas con un relleno dulce de piña, perfectas para disfrutar en cualquier ocasión.",
+                precio: "$18.00",
+                imagen: "https://th.bing.com/th/id/OIP.R-q4ANTaWYwZ6M8X4ksxcgHaKL?w=213&h=250&c=7&r=0&o=7&pid=1.7&rm=3",
+                acento: "#BD8A24",
+                claro: "#FAF0CE",
+                ingredientes: "Harina, piña, azúcar y mantequilla.",
+                caracteristicas: [
+                    "Relleno frutal",
+                    "Exterior dorado",
+                    "Sabor dulce"
+                ]
+            },
+
+            galletas: {
+                nombre: "Galletas caseras",
+                descripcion: "Galletas de estilo casero, con un toque dorado y una textura agradable para acompañar bebidas.",
+                precio: "$25.00",
+                imagen: "https://tse1.mm.bing.net/th/id/OIF.LwpDQdwBqzyhobEUvZNzIA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3lletas.jpg",
+                acento: "#A87345",
+                claro: "#F2E3D1",
+                ingredientes: "Harina, mantequilla, azúcar y huevo.",
+                caracteristicas: [
+                    "Preparación artesanal",
+                    "Textura crujiente",
+                    "Ideales para acompañar café"
+                ]
+            },
+
+            brownies: {
+                nombre: "Brownies de chocolate",
+                descripcion: "Cuadritos de chocolate con una textura húmeda y un intenso sabor a cacao.",
+                precio: "$30.00",
+                imagen: "https://tse3.mm.bing.net/th/id/OIP.rN0CwAbxtlmbIKRLZL_7FwHaLH?r=0&rs=1&pid=ImgDetMain&o=7&rm=3ownies.jpg",
+                acento: "#754638",
+                claro: "#EBDCD5",
+                ingredientes: "Chocolate, cacao, harina, huevo y mantequilla.",
+                caracteristicas: [
+                    "Sabor intenso a chocolate",
+                    "Textura suave",
+                    "Perfectos como postre"
+                ]
+            }
+        };
+
+        // Elegir el producto indicado en la dirección de la página.
+        const parametros = new URLSearchParams(window.location.search);
+        const clave = parametros.get("producto");
+        const producto = productos[clave];
+
+        if (producto) {
+            document.title = producto.nombre + " | Sabores de Barrio";
+            document.getElementById("nombre-producto").textContent = producto.nombre;
+            document.getElementById("descripcion").textContent = producto.descripcion;
+            document.getElementById("precio").textContent = producto.precio;
+            document.getElementById("ingredientes").textContent = producto.ingredientes;
+
+            const imagen = document.getElementById("imagen-producto");
+            imagen.src = producto.imagen;
+            imagen.alt = producto.nombre;
+
+            // Si aún no existe una imagen individual, usar la imagen general.
+            imagen.onerror = function () {
+                this.onerror = null;
+                this.src = "img/producto.jpg";
+                this.alt = producto.nombre + " (imagen general de la tienda)";
+            };
+
+            document.documentElement.style.setProperty("--acento", producto.acento);
+            document.documentElement.style.setProperty("--acento-claro", producto.claro);
+
+            const lista = document.getElementById("caracteristicas");
+            producto.caracteristicas.forEach(function (caracteristica) {
+                const elemento = document.createElement("li");
+                elemento.textContent = caracteristica;
+                lista.appendChild(elemento);
+            });
+        } else {
+            document.getElementById("nombre-producto").textContent =
+                "Producto no encontrado";
+            document.getElementById("descripcion").textContent =
+                "No pudimos encontrar ese producto. Regresa a la tienda y selecciona uno del catálogo.";
+            document.getElementById("precio").textContent = "";
+            document.getElementById("ingredientes").textContent = "";
+            document.getElementById("caracteristicas").remove();
+            document.querySelector(".ficha").remove();
+        }
+    </script>
+</body>
+</html>

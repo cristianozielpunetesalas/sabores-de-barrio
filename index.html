@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabores de Barrio</title>
+
+    <style>
+        
+/* ===== PALETA PROFESIONAL ===== */
+:root {
+    --fondo: #F3EEE5;
+    --tarjeta: #FFFCF7;
+    --verde: #294C3A;
+    --verde-suave: #E6EDE5;
+    --terracota: #B9654D;
+    --texto: #383D36;
+    --borde: #E7DED1;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 25px;
+}
+
+body {
+    margin: 0;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    background:
+        radial-gradient(ellipse at top left, #E7D9C4 0%, transparent 45%),
+        var(--fondo);
+    color: var(--texto);
+    line-height: 1.75;
+    text-align: left;
+}
+
+h1, h2, h3 {
+    line-height: 1.25;
+}
+
+h2 {
+    color: var(--verde);
+    font-family: Georgia, serif;
+    font-size: clamp(25px, 3vw, 34px);
+    margin-top: 0;
+}
+
+h3 {
+    color: var(--terracota);
+    font-family: Georgia, serif;
+    font-size: 21px;
+}
+
+p {
+    max-width: 760px;
+}
+
+/* ===== ENCABEZADO ===== */
+header {
+    background: linear-gradient(120deg, #243F30, #45664C);
+    color: white;
+    padding: 28px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    box-shadow: 0 5px 20px #263D2C20;
+}
+
+header h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(27px, 3vw, 36px);
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+header p {
+    color: #E6EADF;
+    margin: 5px 0 0;
+}
+
+/* ===== MENÚ ANIMADO ===== */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    background: #FFFFFF12;
+    border: 1px solid #FFFFFF20;
+    border-radius: 30px;
+    padding: 10px 17px;
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        color 0.25s ease;
+    animation: menuEntrada 0.6s ease both;
+}
+
+nav a:nth-child(2) {
+    animation-delay: 0.08s;
+}
+
+nav a:nth-child(3) {
+    animation-delay: 0.16s;
+}
+
+nav a:nth-child(4) {
+    animation-delay: 0.24s;
+}
+
+nav a:hover {
+    background: #E4D3A5;
+    color: #294C3A;
+    transform: translateY(-4px);
+}
+
+@keyframes menuEntrada {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== ESPACIO ENTRE SECCIONES ===== */
+main {
+    width: min(1120px, 90%);
+    margin: 48px auto;
+}
+
+section,
+article {
+    background: var(--tarjeta);
+    border: 1px solid var(--borde);
+    border-radius: 22px;
+    padding: clamp(23px, 4vw, 42px);
+    margin: 0 0 38px;
+    box-shadow: 0 8px 25px #4939260B;
+    animation: seccionEntrada 0.7s ease both;
+    transition:
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+section:hover,
+article:hover {
+    box-shadow: 0 13px 32px #49392615;
+    border-color: #D8C7AF;
+}
+
+#informacion {
+    border-top: 4px solid var(--terracota);
+}
+
+#productos {
+    border-top: 4px solid var(--verde);
+    animation-delay: 0.1s;
+}
+
+#pedido {
+    border-top: 4px solid #D2B56F;
+    animation-delay: 0.15s;
+}
+
+#privacidad {
+    border-top: 4px solid #879B82;
+    animation-delay: 0.2s;
+}
+
+@keyframes seccionEntrada {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== IMAGEN ===== */
+/* Imagen más pequeña en la página principal */
+main > #productos img {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    height: 220px;
+    object-fit: cover;
+    margin: 20px 0;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px #49392615;
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+main > #productos img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 24px #49392620;
+}
+
+img:hover {
+    transform: scale(1.025);
+    box-shadow: 0 14px 30px #49392624;
+}
+
+/* ===== PRODUCTOS EN TARJETAS ===== */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 22px 0 35px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+li {
+    background: #F4F0E7;
+    border: 1px solid #E8DFD1;
+    border-radius: 14px;
+    padding: 17px 20px;
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+li::before {
+    content: "✦";
+    color: var(--terracota);
+    margin-right: 10px;
+}
+
+li:hover {
+    background: var(--verde-suave);
+    transform: translateY(-4px);
+    box-shadow: 0 7px 16px #294C3A10;
+}
+
+/* ===== TABLA DE PRECIOS ===== */
+table {
+    width: 100%;
+    margin: 25px 0 5px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--borde);
+    border-radius: 13px;
+    overflow: hidden;
+}
+
+th {
+    background: var(--verde);
+    color: white;
+    text-align: left;
+}
+
+th, td {
+    padding: 15px 17px;
+    border-bottom: 1px solid var(--borde);
+}
+
+td {
+    background: #FFFCF7;
+}
+
+tr:nth-child(even) td {
+    background: #F1F0E8;
+}
+
+tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:hover td {
+    background: #E5EDE4;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ===== FORMULARIO SEPARADO ===== */
+form {
+    width: 100%;
+    max-width: 760px;
+    margin: 30px 0 0;
+    text-align: left;
+}
+
+fieldset {
+    background: #FFFFFF;
+    border: 1px solid #E4D9CA;
+    border-radius: 17px;
+    padding: 26px;
+    margin: 0 0 27px;
+    box-shadow: 0 5px 16px #49392608;
+    transition: border-color 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+fieldset:focus-within {
+    border-color: #A4B6A0;
+    box-shadow: 0 6px 20px #294C3A10;
+}
+
+legend {
+    color: var(--verde);
+    background: var(--tarjeta);
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-weight: bold;
+}
+
+label {
+    display: inline-block;
+    margin-top: 8px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    padding: 13px 15px;
+    margin: 8px 0 20px;
+    border: 1px solid #DED5C8;
+    border-radius: 11px;
+    background: #FDFBF7;
+    color: var(--texto);
+    font: inherit;
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--verde);
+    box-shadow: 0 0 0 4px #294C3A13;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--verde);
+}
+
+/* ===== BOTONES ===== */
+button {
+    background: var(--terracota);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 13px 24px;
+    margin: 8px 10px 8px 0;
+    font-size: 15px;
+    font-family: inherit;
+    cursor: pointer;
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+button:hover {
+    background: var(--verde);
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px #294C3A20;
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* ===== PRIVACIDAD ===== */
+details {
+    background: #EDF0E7;
+    border: 1px solid #D9E0D3;
+    border-radius: 15px;
+    padding: 20px 23px;
+    margin: 24px 0 0;
+}
+
+summary {
+    color: var(--verde);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+details p {
+    margin-bottom: 0;
+}
+
+/* ===== PIE DE PÁGINA ===== */
+footer {
+    background: linear-gradient(120deg, #20392B, #344F3B);
+    color: #FFFDF7;
+    padding: 42px 6%;
+    margin-top: 55px;
+    border-radius: 28px 28px 0 0;
+}
+
+footer h2 {
+    color: #E6D3A1;
+}
+
+footer address {
+    font-style: normal;
+}
+
+footer p {
+    color: #E0E6DE;
+}
+
+/* ===== TELÉFONOS Y TABLETAS ===== */
+@media (max-width: 700px) {
+    header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 25px 5%;
+    }
+
+    nav {
+        gap: 7px;
+    }
+
+    nav a {
+        padding: 9px 12px;
+    }
+
+    main {
+        width: 92%;
+        margin: 28px auto;
+    }
+
+    section,
+    article {
+        padding: 23px 18px;
+        margin-bottom: 25px;
+        border-radius: 17px;
+    }
+
+    ul {
+        grid-template-columns: 1fr;
+    }
+
+    fieldset {
+        padding: 20px 15px;
+        margin-bottom: 22px;
+    }
+
+    th, td {
+        padding: 10px 8px;
+        font-size: 13px;
+        overflow-wrap: anywhere;
+    }
+
+    footer {
+        padding: 32px 6%;
+    }
+}
+
+/* ===== ACCESIBILIDAD: MENOS MOVIMIENTO ===== */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Tarjetas de productos clicables */
+.lista-productos li {
+    list-style: none;
+    padding: 0;
+    overflow: hidden;
+}
+
+.lista-productos li::before {
+    content: none;
+}
+
+.lista-productos a {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px;
+    color: var(--texto);
+    text-decoration: none;
+}
+
+.lista-productos a span {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.lista-productos a small {
+    color: var(--terracota);
+    font-size: 14px;
+}
+
+.lista-productos li:hover {
+    transform: translateY(-5px);
+    background: #E6EDE5;
+}
+
+/* ===== SECCIÓN DE PROCESO ARTESANAL ===== */
+
+.proceso-artesanal {
+    margin: 35px 0;
+    padding: 25px;
+    background: #FFFCF7;
+    border-radius: 22px;
+}
+
+.proceso-artesanal h2 {
+    color: #294C3A;
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.proceso-artesanal .intro {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.tarjetas-proceso {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.tarjeta-proceso {
+    overflow: hidden;
+    background: #F3EEE5;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px #49392615;
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.tarjeta-proceso:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px #49392625;
+}
+
+.tarjeta-proceso img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: 200px;
+    object-fit: cover;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.contenido-proceso {
+    padding: 20px;
+}
+
+.contenido-proceso h3 {
+    color: #B9654D;
+    font-size: 19px;
+    margin: 0 0 12px;
+}
+
+.contenido-proceso p {
+    color: #493F35;
+    font-size: 15px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.proceso-artesanal strong {
+    color: #294C3A;
+    font-weight: 800;
+}
+
+/* Adaptación para celulares */
+
+@media (max-width: 600px) {
+    .tarjetas-proceso {
+        grid-template-columns: 1fr;
+    }
+
+    .proceso-artesanal {
+        padding: 15px;
+    }
+
+    .tarjeta-proceso img {
+        height: 190px;
+    }
+}
+
+/* ENCABEZADO PRINCIPAL */
+.encabezado {
+    text-align: center;
+    padding: 35px 20px 25px;
+    background: linear-gradient(135deg, #294C3A, #42664D);
+    color: #FFFCF7;
+    border-radius: 0 0 25px 25px;
+    overflow: hidden;
+}
+
+/* TÍTULO ANIMADO */
+.titulo-principal {
+    display: inline-block;
+    margin: 0;
+    font-size: clamp(34px, 5vw, 52px);
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #ffffff;
+    cursor: pointer;
+    transform-origin: center;
+    transition: transform 0.35s ease,
+                color 0.35s ease,
+                text-shadow 0.35s ease;
+}
+
+.titulo-principal:hover {
+    transform: scale(1.10);
+    color: #fffdfb;
+    text-shadow: 0 5px 18px #00000035;
+}
+
+/* SACUDIDA */
+@keyframes sacudidaTitulo {
+    0%, 100% { transform: scale(1.10) translateX(0); }
+    20%, 60% { transform: scale(1.10) translateX(-5px); }
+    40%, 80% { transform: scale(1.10) translateX(5px); }
+}
+
+.titulo-principal.sacudir {
+    animation: sacudidaTitulo 0.5s ease-in-out;
+}
+
+.encabezado .eslogan {
+    margin: 10px 0 25px;
+    color: #fbf7f7;
+    font-size: 16px;
+    font-style: italic;
+}
+
+/* MENÚ DEBAJO DEL TÍTULO */
+.menu-principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+
+
+/* Opciones del menú sin negrita */
+.menu-principal a {
+    display: inline-block;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    transition: transform 0.25s ease,
+                background-color 0.25s ease,
+                color 0.25s ease;
+}
+
+
+    </style>
+</head>
+
+<script>
+
+</script>
+
+<body>
+
+    <!-- ENCABEZADO Y NAVEGACIÓN -->
+    
+<header class="encabezado">
+    <h1 class="titulo-principal">Sabores de Barrio</h1>
+
+    <p class="eslogan">Tradición, calidad y sabor artesanal</p>
+
+    <nav class="menu-principal">
+        <a href="#informacion">Información</a>
+        <a href="#productos">Productos</a>
+        <a href="#pedido">Pedidos</a>
+        <a href="#privacidad">Privacidad</a>
+    </nav>
+</header>
+
+
+    <main>
+
+        <!-- INFORMACIÓN DEL NEGOCIO -->
+        <article id="informacion">
+            <h2>Conoce nuestro negocio</h2>
+            <p>
+               Somos un pequeño negocio artesanal dedicado a la elaboración de panes, galletas y deliciosos postres. Nos distinguimos por la calidad de nuestros ingredientes, la higiene en cada preparación y el cuidado de cada detalle, ofreciendo productos frescos con un sabor casero y especial.
+            </p>
+            <p>
+                Ofrecemos productos ideales para compartir en familia,
+                disfrutar en reuniones o regalar en ocasiones especiales.
+            </p>
+        </article>
+
+        <!-- CATÁLOGO DE PRODUCTOS -->
+        <section id="productos">
+            <h2>Nuestros productos artesanales</h2>
+
+            <img src="https://th.bing.com/th/id/OIP.QHfZVtoNC4hwG41wzjuYSgHaE7?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3"
+                 alt="Productos artesanales de panadería">
+
+            <p>
+              
+<div class="proceso-artesanal">
+
+    <h2>¿Cómo elaboramos nuestros productos?</h2>
+
+    <p class="intro">
+        En <strong>Sabores de Barrio</strong>, elaboramos productos
+        artesanales con dedicación, ingredientes de calidad y mucho
+        cuidado en cada etapa del proceso.
+    </p>
+
+    <div class="tarjetas-proceso">
+
+        <article class="tarjeta-proceso">
+            <img src="https://images.openai.com/static-rsc-4/8EfnbB8sAfZWw9he5YKpnj4gduSR_MNBKq5ioZY6xhJq1nJwOQeVJEpA7sPDLNQRG6DEZgbP6__q5aU5erMEx09KWJLU_5vmm6xGA2ITcN08A6C9P1xXPUkk7IuLdmr6dG8hoKQtblWgLHBjvoWwjJBoil4ds1Af627V0aVzshSOV1yzh_OpM_g9-0wdmiKr?purpose=fullsize"
+                 alt="Preparación de productos artesanales">
+            <div class="contenido-proceso">
+                <h3>👩‍🍳 Proceso de preparación</h3>
+                <p>
+                    Preparamos cada receta siguiendo cuidadosamente
+                    las cantidades de los ingredientes, los tiempos
+                    de mezclado y la cocción para conseguir un buen
+                    sabor y una textura agradable.
+                </p>
+            </div>
+        </article>
+
+        <article class="tarjeta-proceso">
+            <img src="https://images.openai.com/static-rsc-4/fh9zS2tOlBLRUuFZbuvmeRO03NH_JR5bp6kgH0YaKoW612kHSdYS-B-nKmCutOxfE7mQM9M7mkQo1H1symZLCN3HfkUq-h5eGrrm9Vuw0pJ-Agmu72jVXyVmJcSXHaKPpKYc04Co_44O6dWjiEdVQRxACfkbMccb7BuzniQmrUSCl-8lurFQC6yXzOcoORhd?purpose=inline"
+                 alt="Limpieza de utensilios y área de trabajo">
+            <div class="contenido-proceso">
+                <h3>🧼 Higiene y limpieza</h3>
+                <p>
+                    La limpieza es fundamental. Se deben lavar las
+                    manos, limpiar y desinfectar las superficies y
+                    los utensilios, y manipular los ingredientes
+                    correctamente para prevenir la contaminación.
+                </p>
+            </div>
+        </article>
+
+        <article class="tarjeta-proceso">
+            <img src="https://images.openai.com/static-rsc-4/z2TexLZKS8bBeur6GL_S1PSzJVZ9VKa1Vm0XGTo2ItkzDfkQZQRlkfylDOMh6t8Qv-3ldYWMZhNRFLmvnx7Tk97GvRw92lgjVNiXEh5ito5eai15ms5n6J5b2faOiDuPQUs4tLDJv4WikGylvLH88GIwXuApXyrF4vGx1SvXm0KNQD4QmsmOZZgOD_9Lreri?purpose=inline"
+                 alt="Ingredientes para elaborar productos artesanales">
+            <div class="contenido-proceso">
+                <h3>🌾 Calidad de los ingredientes</h3>
+                <p>
+                    Seleccionamos ingredientes en buen estado y
+                    revisamos su calidad antes de utilizarlos,
+                    buscando que cada producto tenga un sabor,
+                    aroma y presentación agradables.
+                </p>
+            </div>
+        </article>
+
+        <article class="tarjeta-proceso">
+            <img src="https://images.openai.com/static-rsc-4/1MVmKgALcMaN4Q2Q7qJNCpZ-18pwKva0pi6FozWSTQDLm-L0247kpt0ng6oIS4FwAM41Y7xhFL77_ZWkVCeQGCC14yjAQ3LDJFu113xTqQmXum90nth7ZWBNLt3lZS4SmffHUrMTTZjaHkRcpnKQBJfFAMvd9X2oXsNjg3wF_mo?purpose=inline"
+                 alt="Productos artesanales listos para conservar">
+            <div class="contenido-proceso">
+                <h3>📦 Frescura y conservación</h3>
+                <p>
+                    Una vez preparados, los productos se almacenan
+                    en recipientes limpios y adecuados. La
+                    conservación depende de sus ingredientes y de
+                    las condiciones de temperatura necesarias.
+                </p>
+            </div>
+        </article>
+
+
+    </div>
+</div>
+
+            </p>
+
+            <h3>Productos disponibles</h3>
+            
+<ul class="lista-productos">
+    <li>
+        <a href="detalle.html?producto=pan">
+            <span>Pan de elote artesanal</span>
+            <small>Ver producto →</small>
+        </a>
+    </li>
+    <li>
+        <a href="detalle.html?producto=pina">
+            <span>Empanadas de piña</span>
+            <small>Ver producto →</small>
+        </a>
+    </li>
+    <li>
+        <a href="detalle.html?producto=galletas">
+            <span>Galletas caseras</span>
+            <small>Ver producto →</small>
+        </a>
+    </li>
+    <li>
+        <a href="detalle.html?producto=brownies">
+            <span>Brownies de chocolate</span>
+            <small>Ver producto →</small>
+        </a>
+    </li>
+</ul>
+
+            <!-- TABLA DE PRECIOS -->
+            <h3>Lista de precios</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pan de elote</td>
+                        <td>Panadería</td>
+                        <td>$35.00</td>
+                    </tr>
+                    <tr>
+                        <td>Empanadas de piña</td>
+                        <td>Repostería</td>
+                        <td>$18.00</td>
+                    </tr>
+                    <tr>
+                        <td>Galletas caseras</td>
+                        <td>Galletas</td>
+                        <td>$25.00</td>
+                    </tr>
+                    <tr>
+                        <td>Brownies de chocolate</td>
+                        <td>Repostería</td>
+                        <td>$30.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- FORMULARIO DE PEDIDO -->
+        <section id="pedido">
+            <h2>Realiza tus pedidos</h2>
+            <p> porfavor Completa los siguientes datos para solicitar tus productos.</p>
+
+            <form action="#" method="get">
+                <fieldset>
+                    <legend>Datos del cliente</legend>
+
+                    <label for="nombre">Nombre completo:</label>
+                    <input type="text" id="nombre" name="nombre"
+                           placeholder="Escribe tu nombre" required>
+
+                    <label for="correo">Correo electrónico:</label>
+                    <input type="email" id="correo" name="correo"
+                           placeholder="ejemplo@correo.com" required>
+
+                    <label for="fecha">Fecha del pedido:</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Producto y cantidad</legend>
+
+                    <label for="producto">Selecciona un producto:</label>
+                    <select id="producto" name="producto">
+                        <option value="pan">Pan de elote artesanal</option>
+                        <option value="empanadas">Empanadas de piña</option>
+                        <option value="galletas">Galletas caseras</option>
+                        <option value="brownies">Brownies de chocolate</option>
+                    </select>
+
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" id="cantidad" name="cantidad"
+                           min="1" max="50" value="1">
+                </fieldset>
+
+                <fieldset>
+                    <legend>Preferencias</legend>
+
+                    <p>¿Deseas empaque para regalo?</p>
+                    <input type="checkbox" id="regalo"
+                           name="regalo" value="si">
+                    <label for="regalo">Sí, empaque para regalo</label>
+
+                    <p>¿Cómo prefieres recibir tu pedido?</p>
+                    <input type="radio" id="recoger" name="entrega"
+                           value="recoger" checked>
+                    <label for="recoger">Recoger en el negocio</label>
+
+                    <br>
+
+                    <input type="radio" id="domicilio" name="entrega"
+                           value="domicilio">
+                    <label for="domicilio">Entrega a domicilio</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Instrucciones especiales</legend>
+
+                    <label for="comentarios">Comentarios:</label>
+                    <textarea id="comentarios" name="comentarios"
+                              rows="4"
+                              placeholder="Escribe aquí tus instrucciones"></textarea>
+                </fieldset>
+
+                <button type="submit">Enviar pedido</button>
+                <button type="reset">Limpiar formulario</button>
+            </form>
+        </section>
+
+        <!-- AVISO DE PRIVACIDAD -->
+        <section id="privacidad">
+            <h2>Privacidad de tus datos</h2>
+
+            <details>
+                <summary>Aviso de privacidad</summary>
+                <p>
+                    Los datos proporcionados en este formulario se utilizarían
+                    únicamente para organizar las solicitudes de pedidos,
+                    contactar al cliente y coordinar la entrega de los productos.
+                    Este sitio es un proyecto académico y no almacena
+                    información personal en un servidor.
+                </p>
+            </details>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA Y CONTACTO FICTICIO -->
+    <footer>
+        <h2>Contáctanos</h2>
+
+        <address>
+            Sabores de Barrio<br>
+            Calle de los Sabores #167<br>
+            Colonia Centro, Monterrey, Nuevo León<br>
+            Correo: SaboresCaseros@gmail.com<br>
+            Teléfono: 81 44273238
+        </address>
+
+        <p>Horario: lunes a sábado, de 9:00 a 18:00.</p>
+        <p>Sabores de Barrio - Proyecto académico</p>
+    </footer>
+
+</body>
+</html>
